@@ -86,6 +86,11 @@ information about each option that appears later in this page.
         bucket: bucketname
         keyfile: /path/to/keyfile
         rootdirectory: /gcs/object/name/prefix
+      scs:
+      	accesskey: scsaccesskey
+      	secretkey: scssecretkey
+      	region: regionname
+      	bucket: bucketname
       s3:
         accesskey: awsaccesskey
         secretkey: awssecretkey
@@ -354,6 +359,11 @@ Permitted values are `error`, `warn`, `info` and `debug`. The default is
         bucket: bucketname
         keyfile: /path/to/keyfile
         rootdirectory: /gcs/object/name/prefix
+      scs:
+      	accesskey: scsaccesskey
+      	secretkey: scssecretkey
+      	region: regionname
+      	bucket: bucketname
       s3:
         accesskey: awsaccesskey
         secretkey: awssecretkey
@@ -427,6 +437,12 @@ You must configure one backend; if you configure more, the registry returns an e
     See the <a href="storage-drivers/gcs.md">driver's reference documentation</a>.
     </td>
   </tr>
+  <tr>
+      <td><code>scs</code></td>
+      <td>Uses Sohu Cloud Storage.
+      See the <a href="storage-drivers/scs.md">driver's reference documentation</a>.
+      </td>
+    </tr>
   <tr>
     <td><code>rados</code></td>
     <td>Uses Ceph Object Storage.
