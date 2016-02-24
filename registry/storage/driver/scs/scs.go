@@ -47,7 +47,7 @@ type DriverParameters struct {
 }
 
 func init() {
-        factory.Register(driverName, &sohuStorageDriverFactory{})
+        factory.Register(driverName, &scsDriverFactory{})
 }
 
 // scsDriverFactory implements the factory.StorageDriverFactory interface

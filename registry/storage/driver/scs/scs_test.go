@@ -3,11 +3,10 @@
 package scs
 
 import (
-        "io/ioutil"
         "os"
         "testing"
 
-        "github.com/scsutil/scs"
+        scsutil "github.com/scsutil/scs"
 
         ctx "github.com/docker/distribution/context"
         storagedriver "github.com/docker/distribution/registry/storage/driver"
@@ -32,11 +31,11 @@ func init() {
 
                 parameters := DriverParameters{
 
-                        Auth:   scs.Auth{
+                        Auth:   scsutil.Auth{
                                 AccessKey:  accessKey,
                                 SecretKey:  secretKey,
                         },
-                        Region: scs.Regions[region],
+                        Region: scsutil.Regions[region],
                         Bucket: bucket,
                         ChunkSize: minChunkSize,
                 }
