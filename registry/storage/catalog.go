@@ -3,8 +3,7 @@ package storage
 import (
 	"errors"
 	"io"
-	"path"
-	"strings"
+	"sort"
 
 	"github.com/docker/distribution/context"
 	"github.com/docker/distribution/registry/storage/driver"
@@ -30,6 +29,7 @@ func (reg *registry) Repositories(ctx context.Context, repos []string, last stri
 		return 0, err
 	}
 
+	/*
 	err = Walk(ctx, reg.blobStore.driver, root, func(fileInfo driver.FileInfo) error {
 		filePath := fileInfo.Path()
 
@@ -54,6 +54,23 @@ func (reg *registry) Repositories(ctx context.Context, repos []string, last stri
 
 		return nil
 	})
+	*/
+
+	catalogRoot := "/catalog" + root
+	children, err := reg.blobStore.driver.List(ctx, catalogRoot)
+	if err != nil {
+		return 0, err
+	}
+
+	for _, child := range children {
+		// lop the base path off
+		repoPath := child[len(root)+1:]
+
+		if repoPath > last {
+			foundRepos = append(foundRepos, repoPath)
+		}
+	}
+	sort.Strings(foundRepos)
 
 	n = copy(repos, foundRepos)
 
